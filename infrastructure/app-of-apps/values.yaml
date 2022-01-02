@@ -2,5 +2,5 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: git@github.com:ItsKev/k6-load-testing.git
+    repoURL: https://github.com/ItsKev/k6-load-testing.git
     targetRevision: main

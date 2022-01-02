@@ -14,7 +14,7 @@ server:
         server: https://kubernetes.default.svc
       source:
         path: infrastructure/app-of-apps
-        repoURL: git@github.com:ItsKev/k6-load-testing.git
+        repoURL: https://github.com/ItsKev/k6-load-testing.git
         targetRevision: main
       syncPolicy:
         automated:
@@ -24,6 +24,6 @@ server:
 configs:
   repositories:
     github-repo:
-      url: git@github.com:ItsKev/k6-load-testing.git
+      url: https://github.com/ItsKev/k6-load-testing.git
   secret:
     argocdServerAdminPassword: $2a$12$ApLLTHCRv1HF9DQyXEYXludcUS6jW26STbqhUB6GpokbOdFO8drk6
