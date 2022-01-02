@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: loki-stack
-  namespace: monitoring
+  namespace: argo-cd
 spec:
   destination:
-    namespace: loki-stack
+    namespace: monitoring
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
