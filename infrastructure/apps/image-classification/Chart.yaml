@@ -1,0 +1,4 @@
+apiVersion: v2
+name: image-classification
+description: Installation of image-classification
+version: 0.1.0

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: prediction-service
+description: Installation of prediction-service
+version: 0.1.0

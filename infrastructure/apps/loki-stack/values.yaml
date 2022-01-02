@@ -1,0 +1,7 @@
+loki-stack:
+  grafana:
+    enabled: true
+    service:
+      type: NodePort
+      nodePort: 30001
+    adminPassword: password

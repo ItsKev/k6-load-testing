@@ -1,0 +1,13 @@
+prometheus-adapter:
+  prometheus:
+    url: http://prometheus.linkerd-viz.svc
+    port: 9090
+    path: ""
+
+  rules:
+    default: false
+    custom:
+    - seriesQuery: 'request_total'
+      resources: 
+        template: "<<.Resource>>"
+      metricsQuery: 'sum(irate(request_total{<<.LabelMatchers>>, direction="inbound", target_port="8080"}[30s])) by (<<.GroupBy>>)'

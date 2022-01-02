@@ -1,0 +1,8 @@
+postgresql:
+  postgresqlPassword: password
+
+  initdbScripts:
+    init_script.sql: |
+      CREATE SCHEMA image_classification;
+      CREATE TABLE image_classification.log (id uuid PRIMARY KEY, created_at timestamp, prediction integer);
+      CREATE TABLE image_classification.input (id uuid PRIMARY KEY, log_id uuid, image bytea, CONSTRAINT fk_log FOREIGN KEY(log_id) REFERENCES image_classification.log(id));

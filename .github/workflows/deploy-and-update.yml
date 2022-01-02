@@ -1,0 +1,44 @@
+name: Reusable deploy and update workflow
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        required: true
+        type: string
+    secrets:
+      username:
+        required: true
+      password:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.username }}
+        password: ${{ secrets.password }}
+    - name: Build ${{ inputs.service }} Docker image
+      run: cd services/${{ inputs.service }} && docker build . --tag itskev/${{ inputs.service }}:${{ github.run_id }}
+    - name: Push ${{ inputs.service }} Docker image
+      run: docker push itskev/${{ inputs.service }}:${{ github.run_id }}
+  update-version:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update ${{ inputs.service }} version
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq eval -i '.image.tag = "${{ github.run_id }}"' 'infrastructure/apps/${{ inputs.service }}/values.yaml'
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'Kevin Huber'
+        git config --global user.email 'kevin.huber@hotmail.com'
+        git add --all
+        git commit -m "Update ${{ inputs.service }} to version ${{ github.run_id }}"
+        git push

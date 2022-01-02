@@ -1,0 +1,9 @@
+apiVersion: v2
+name: postgresql
+description: Installation of postgresql
+version: 0.1.0
+
+dependencies:
+- name: postgresql
+  version: 10.13.14
+  repository: https://charts.bitnami.com/bitnami
