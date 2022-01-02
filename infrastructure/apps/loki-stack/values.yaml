@@ -5,3 +5,12 @@ loki-stack:
       type: NodePort
       nodePort: 30001
     adminPassword: password
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Prometheus
+          type: prometheus
+          url: prometheus-server
+          access: proxy
+          isDefault: true
