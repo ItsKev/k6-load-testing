@@ -1,5 +1,7 @@
 prometheus:
   server:
+    extraArgs:
+      enable-feature: remote-write-receiver
     service:
       type: NodePort
       nodePort: 30002
