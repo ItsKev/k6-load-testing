@@ -9,5 +9,7 @@ nodes:
     hostPort: 8080
   - containerPort: 30001
     hostPort: 8090
+  - containerPort: 30002
+    hostPort: 8091
   - containerPort: 30010
     hostPort: 9876

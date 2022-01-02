@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki-stack
+  name: prometheus
   namespace: monitoring
 spec:
   destination:
-    namespace: loki-stack
+    namespace: prometheus
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
     helm:
       valueFiles:
         - values.yaml
-    path: infrastructure/apps/loki-stack
+    path: infrastructure/apps/prometheus
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
